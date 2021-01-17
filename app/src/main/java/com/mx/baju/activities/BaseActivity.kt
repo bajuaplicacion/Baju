@@ -5,6 +5,8 @@ import android.app.Dialog
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
@@ -21,11 +23,16 @@ class BaseActivity : AppCompatActivity() {
         setUpToolbar()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> backPressButton()
         }
-        return super.onOptionsItemSelected(item)
+        return true
     }
 
     private fun setUpToolbar() {

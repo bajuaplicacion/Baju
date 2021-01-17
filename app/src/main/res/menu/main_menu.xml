@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_diccionario"
+        android:title="@string/menu_diccionario"/>
+    <item android:id="@+id/menu_redesSociales"
+        android:title="@string/menu_redesSociales"/>
+    <item android:id="@+id/menu_configuracion"
+        android:title="@string/menu_configuracion"/>
+</menu>
