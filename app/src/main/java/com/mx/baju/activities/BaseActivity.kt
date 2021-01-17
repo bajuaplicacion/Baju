@@ -1,15 +1,10 @@
 package com.mx.baju.activities
 
-import android.app.ActionBar
-import android.app.Dialog
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -17,14 +12,17 @@ import com.mx.baju.R
 
 class BaseActivity : AppCompatActivity() {
 
+    //private var menu : Menu? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
         setUpToolbar()
+        setUpUI()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        inflateMenu(menu)
         return true
     }
 
@@ -42,6 +40,22 @@ class BaseActivity : AppCompatActivity() {
         showBackNavigationButton(true)
     }
 
+    private fun setUpUI() {
+        val button : Button = findViewById(R.id.btnHide)
+        button.setOnClickListener {
+            val toolbar : Toolbar = findViewById(R.id.base_toolbar)
+            if (toolbar.menu.hasVisibleItems()) {
+                showMenu(false)
+            } else {
+                showMenu(true)
+            }
+        }
+    }
+
+    private fun inflateMenu(menu: Menu?) {
+        menuInflater.inflate(R.menu.main_menu, menu)
+    }
+
     fun showBackNavigationButton(show : Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(show)
         supportActionBar?.setDisplayShowHomeEnabled(show)
@@ -55,6 +69,15 @@ class BaseActivity : AppCompatActivity() {
     fun changeSubTitle (subtTitle : String) {
         val toolbar:Toolbar = findViewById(R.id.base_toolbar)
         toolbar.subtitle = subtTitle
+    }
+
+    fun showMenu(show : Boolean) {
+        val toolbar : Toolbar = findViewById(R.id.base_toolbar)
+        if (show) {
+            inflateMenu(toolbar.menu)
+        } else {
+            toolbar.menu.clear()
+        }
     }
 
     fun backPressButton() {

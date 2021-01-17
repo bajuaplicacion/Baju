@@ -8,4 +8,5 @@
     <color name="windowBackground">#027ADA</color>
     <color name="textButton">#027ADA</color>
     <color name="backgroundButton">#ffffff</color>
+    <color name="white">#ffffff</color>
 </resources>
