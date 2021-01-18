@@ -1,4 +1,4 @@
-package com.mx.baju
+package com.mx.bajun
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

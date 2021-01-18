@@ -1,4 +1,4 @@
-package com.mx.baju
+package com.mx.bajun
 
 import org.junit.Test
 

@@ -1,9 +1,8 @@
-package com.mx.baju.login.activities
+package com.mx.bajun.login.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mx.baju.R
-import com.mx.baju.activities.BaseActivity
+import com.mx.bajun.R
+import com.mx.bajun.activities.BaseActivity
 
 class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
