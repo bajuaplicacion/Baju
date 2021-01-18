@@ -10,16 +10,15 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.mx.baju.R
 
-class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
         setUpToolbar()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        inflateMenu(menu)
+        //inflateMenu(menu)
         return true
     }
 
@@ -33,11 +32,16 @@ class BaseActivity : AppCompatActivity() {
         return true
     }
 
-    private fun setUpToolbar() {
+    override fun onBackPressed() {
+        Toast.makeText(this, "Back press", Toast.LENGTH_SHORT).show()
+        super.onBackPressed()
+    }
+
+    public fun setUpToolbar() {
+        setContentView(R.layout.activity_base)
         val toolbar:Toolbar = findViewById(R.id.base_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow_white)
-        showBackNavigationButton(true)
     }
 
     private fun inflateMenu(menu: Menu?) {
@@ -81,7 +85,6 @@ class BaseActivity : AppCompatActivity() {
     }
 
     public fun backPressButton() {
-        Toast.makeText(this, "Back press", Toast.LENGTH_SHORT).show()
         onBackPressed()
     }
 }
