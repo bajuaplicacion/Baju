@@ -12,13 +12,10 @@ import com.mx.baju.R
 
 class BaseActivity : AppCompatActivity() {
 
-    //private var menu : Menu? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
         setUpToolbar()
-        setUpUI()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -29,6 +26,9 @@ class BaseActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> backPressButton()
+            R.id.menu_diccionario -> goToDiccionario()
+            R.id.menu_redesSociales -> goToRedesSociales()
+            R.id.menu_configuracion -> goToConfiguracion()
         }
         return true
     }
@@ -40,38 +40,26 @@ class BaseActivity : AppCompatActivity() {
         showBackNavigationButton(true)
     }
 
-    private fun setUpUI() {
-        val button : Button = findViewById(R.id.btnHide)
-        button.setOnClickListener {
-            val toolbar : Toolbar = findViewById(R.id.base_toolbar)
-            if (toolbar.menu.hasVisibleItems()) {
-                showMenu(false)
-            } else {
-                showMenu(true)
-            }
-        }
-    }
-
     private fun inflateMenu(menu: Menu?) {
         menuInflater.inflate(R.menu.main_menu, menu)
     }
 
-    fun showBackNavigationButton(show : Boolean) {
+    public fun showBackNavigationButton(show : Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(show)
         supportActionBar?.setDisplayShowHomeEnabled(show)
     }
 
-    fun changeTitle(title:String) {
+    public fun changeTitle(title:String) {
         val toolbar:Toolbar = findViewById(R.id.base_toolbar)
         toolbar.title = title
     }
 
-    fun changeSubTitle (subtTitle : String) {
+    public fun changeSubTitle (subtTitle : String) {
         val toolbar:Toolbar = findViewById(R.id.base_toolbar)
         toolbar.subtitle = subtTitle
     }
 
-    fun showMenu(show : Boolean) {
+    public fun showMenu(show : Boolean) {
         val toolbar : Toolbar = findViewById(R.id.base_toolbar)
         if (show) {
             inflateMenu(toolbar.menu)
@@ -80,8 +68,20 @@ class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun backPressButton() {
+    public fun goToDiccionario() {
+        Toast.makeText(this, "Diccionario", Toast.LENGTH_SHORT).show()
+    }
+
+    public fun goToRedesSociales() {
+        Toast.makeText(this, "Redes sociales", Toast.LENGTH_SHORT).show()
+    }
+
+    public fun goToConfiguracion() {
+        Toast.makeText(this, "Configuracion", Toast.LENGTH_SHORT).show()
+    }
+
+    public fun backPressButton() {
         Toast.makeText(this, "Back press", Toast.LENGTH_SHORT).show()
-        //onBackPressed()
+        onBackPressed()
     }
 }

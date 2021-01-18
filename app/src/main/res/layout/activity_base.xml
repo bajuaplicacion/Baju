@@ -11,15 +11,5 @@
         android:id="@+id/base_toolbar"
         layout="@layout/toolbar"/>
 
-    <Button
-        android:id="@+id/btnHide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hide"
-        style="@style/ButtonStyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
