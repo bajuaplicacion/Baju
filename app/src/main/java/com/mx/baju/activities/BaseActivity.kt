@@ -1,13 +1,10 @@
 package com.mx.baju.activities
 
-import android.app.ActionBar
-import android.app.Dialog
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -21,11 +18,19 @@ class BaseActivity : AppCompatActivity() {
         setUpToolbar()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        inflateMenu(menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> backPressButton()
+            R.id.menu_diccionario -> goToDiccionario()
+            R.id.menu_redesSociales -> goToRedesSociales()
+            R.id.menu_configuracion -> goToConfiguracion()
         }
-        return super.onOptionsItemSelected(item)
+        return true
     }
 
     private fun setUpToolbar() {
@@ -35,23 +40,48 @@ class BaseActivity : AppCompatActivity() {
         showBackNavigationButton(true)
     }
 
-    fun showBackNavigationButton(show : Boolean) {
+    private fun inflateMenu(menu: Menu?) {
+        menuInflater.inflate(R.menu.main_menu, menu)
+    }
+
+    public fun showBackNavigationButton(show : Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(show)
         supportActionBar?.setDisplayShowHomeEnabled(show)
     }
 
-    fun changeTitle(title:String) {
+    public fun changeTitle(title:String) {
         val toolbar:Toolbar = findViewById(R.id.base_toolbar)
         toolbar.title = title
     }
 
-    fun changeSubTitle (subtTitle : String) {
+    public fun changeSubTitle (subtTitle : String) {
         val toolbar:Toolbar = findViewById(R.id.base_toolbar)
         toolbar.subtitle = subtTitle
     }
 
-    fun backPressButton() {
+    public fun showMenu(show : Boolean) {
+        val toolbar : Toolbar = findViewById(R.id.base_toolbar)
+        if (show) {
+            inflateMenu(toolbar.menu)
+        } else {
+            toolbar.menu.clear()
+        }
+    }
+
+    public fun goToDiccionario() {
+        Toast.makeText(this, "Diccionario", Toast.LENGTH_SHORT).show()
+    }
+
+    public fun goToRedesSociales() {
+        Toast.makeText(this, "Redes sociales", Toast.LENGTH_SHORT).show()
+    }
+
+    public fun goToConfiguracion() {
+        Toast.makeText(this, "Configuracion", Toast.LENGTH_SHORT).show()
+    }
+
+    public fun backPressButton() {
         Toast.makeText(this, "Back press", Toast.LENGTH_SHORT).show()
-        //onBackPressed()
+        onBackPressed()
     }
 }
