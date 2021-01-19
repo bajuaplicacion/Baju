@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "452940925019",
+    "project_id": "banju-dcd6d",
+    "storage_bucket": "banju-dcd6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452940925019:android:2bfc5d8084571e5221977e",
+        "android_client_info": {
+          "package_name": "com.mx.bajun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452940925019-rl2n091evud8fe5pos59m128570dre3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-6BAXWr1JPLdNJWgJ_nAxPPu88lhHw1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452940925019-rl2n091evud8fe5pos59m128570dre3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

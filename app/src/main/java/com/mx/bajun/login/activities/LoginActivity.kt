@@ -9,10 +9,10 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login)
         super.onCreate(savedInstanceState)
         showBackNavigationButton(false)
+        showMenu(false)
     }
 
     override fun onResume() {
         super.onResume()
-        showMenu(false)
     }
 }
