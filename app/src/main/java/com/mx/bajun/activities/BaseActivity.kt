@@ -2,8 +2,8 @@ package com.mx.bajun.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.mx.bajun.R
@@ -12,6 +12,7 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        super.setContentView(R.layout.activity_base)
         setUpToolbar()
     }
 
@@ -35,8 +36,28 @@ open class BaseActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    public fun setUpToolbar() {
-        setContentView(R.layout.activity_base)
+    override fun setContentView(view: View?) {
+        /*super.setContentView(view)*/
+        val params : ViewGroup.LayoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        setContentView(view, params)
+    }
+
+    override fun setContentView(view: View?, params: ViewGroup.LayoutParams?) {
+        /*super.setContentView(view, params)*/
+        val activityContainer : FrameLayout = findViewById(R.id.activity_container)
+        activityContainer.addView(view, params)
+    }
+
+    override fun setContentView(layoutResID: Int) {
+        /*super.setContentView(layoutResID)*/
+        val activityContainer : FrameLayout = findViewById(R.id.activity_container)
+        val inflater : LayoutInflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val params : ViewGroup.LayoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        val stubView : View = inflater.inflate(layoutResID, activityContainer, false)
+        activityContainer.addView(stubView, params)
+    }
+
+    private fun setUpToolbar() {
         val toolbar:Toolbar = findViewById(R.id.base_toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow_white)
