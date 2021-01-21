@@ -11,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -38,22 +39,23 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     override fun onStart() {
         super.onStart()
         val account : GoogleSignInAccount?  = GoogleSignIn.getLastSignedInAccount(this)
-        val currentUser = this.auth.currentUser
-        if (currentUser != null) {
+        //val currentUser = this.auth.currentUser
+        /*if (currentUser != null) {
             goToHomeScreen(currentUser.displayName, currentUser.email)
-        } else if (account != null) {
-            goToHomeScreen(account.displayName, account.displayName)
+        } else*/
+        if (account != null) {
+            goToHomeScreen(account.displayName, account.email)
+        } else {
+            //TODO Not login
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GOOGLE_LOGIN_REQ_ID) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
-                val account = task.getResult(ApiException::class.java)
-                Log.d(ActivityConstants.TAG, "firebaseAuthWithGoogle: " + account.id)
-                firebaseAuthWithGoogle(account.idToken!!)
+               val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+                handleSignInResult(task)
             } catch (e : ApiException) {
                 Log.w(ActivityConstants.TAG, "Google sign in failed", e)
             }
@@ -66,13 +68,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    private fun setGoogleSignIn() {
-        val signInButton : SignInButton = findViewById(R.id.sign_in_button)
-        signInButton.setSize(SignInButton.SIZE_WIDE)
-        signInButton.setOnClickListener(this)
-        this.auth = Firebase.auth
-    }
-
     private fun signIn() {
         Toast.makeText(this, "Google Sign in", Toast.LENGTH_SHORT).show()
         val gso : GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
@@ -81,20 +76,22 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         startActivityForResult(signInIntent, GOOGLE_LOGIN_REQ_ID)
     }
 
-    private fun firebaseAuthWithGoogle(idToken : String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        this.auth.signInWithCredential(credential)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val user : FirebaseUser? = this.auth.currentUser
-                    if (user != null) {
-                        goToHomeScreen(user.displayName, user.email)
-                    }
-                } else {
-                    Toast.makeText(this, "Log in failed", Toast.LENGTH_SHORT).show()
-                }
-            }
+    private fun setGoogleSignIn() {
+        val signInButton : SignInButton = findViewById(R.id.sign_in_button)
+        signInButton.setSize(SignInButton.SIZE_WIDE)
+        signInButton.setOnClickListener(this)
+        this.auth = Firebase.auth
     }
+
+    private fun handleSignInResult(task: Task<GoogleSignInAccount>) {
+        try {
+            val account : GoogleSignInAccount = task.getResult(ApiException::class.java)
+            goToHomeScreen(account.displayName, account.email)
+        } catch (e : ApiException) {
+            Log.w(ActivityConstants.TAG, "signInResult:failed code= " + e.status)
+        }
+    }
+
 
     private fun goToHomeScreen(displayName : String?, email : String?) {
         val homeScreenIntent : Intent = Intent(this, HomeScreenActivity::class.java).apply {

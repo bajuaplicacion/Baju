@@ -6,6 +6,9 @@ import android.view.*
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.mx.bajun.R
@@ -109,7 +112,11 @@ open class BaseActivity : AppCompatActivity() {
         onBackPressed()
     }
 
-    public fun signOut() {
-        Firebase.auth.signOut()
+    public fun googleSignOut() {
+        val gso : GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
+        val mGoogleSignInClient : GoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        mGoogleSignInClient.signOut().addOnCompleteListener {
+            finish()
+        }
     }
 }
