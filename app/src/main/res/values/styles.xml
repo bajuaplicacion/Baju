@@ -21,6 +21,14 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="NormalTextStyle">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/merienda_one</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

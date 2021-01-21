@@ -1,4 +1,4 @@
-package com.mx.bajun.activities
+package com.mx.bajun.base
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.view.*
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.mx.bajun.R
 
 open class BaseActivity : AppCompatActivity() {
@@ -105,5 +107,9 @@ open class BaseActivity : AppCompatActivity() {
 
     public fun backPressButton() {
         onBackPressed()
+    }
+
+    public fun signOut() {
+        Firebase.auth.signOut()
     }
 }
