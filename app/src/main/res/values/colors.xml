@@ -9,4 +9,5 @@
     <color name="textButton">#027ADA</color>
     <color name="backgroundButton">#ffffff</color>
     <color name="white">#ffffff</color>
+    <color name="button_pressed">#C8C8C8</color>
 </resources>

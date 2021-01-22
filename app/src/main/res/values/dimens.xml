@@ -1,3 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="button_left">20dp</dimen>
+    <dimen name="button_right">20dp</dimen>
+    <dimen name="button_top">10dp</dimen>
+    <dimen name="button_bottom">10dp</dimen>
+    <dimen name="large_top_separator">40dp</dimen>
 </resources>
