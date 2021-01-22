@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:contentDescription="@string/logo_content_description"
-        android:src="@drawable/ic_temp_logo"
+        android:src="@drawable/ic_baju_logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -32,7 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_top_separator"
-        android:text="Ingresa con tu correo"
+        android:text="@string/btn_ingresaConCorreoTxt"
+        android:contentDescription="@string/btn_ingresaConCorreoTxt"
         style="@style/ButtonStyle"
         app:layout_constraintTop_toBottomOf="@id/sign_in_button"
         app:layout_constraintEnd_toEndOf="parent"
