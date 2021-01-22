@@ -4,22 +4,12 @@
         <shape android:shape="rectangle" >
             <solid android:color="@color/white"/>
             <corners android:radius="5dp"/>
-            <padding
-                android:left="@dimen/button_left"
-                android:right="@dimen/button_right"
-                android:top="@dimen/button_top"
-                android:bottom="@dimen/button_bottom"/>
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape android:shape="rectangle" >
             <solid android:color="@color/button_pressed"/>
             <corners android:radius="5dp"/>
-            <padding
-                android:left="@dimen/button_left"
-                android:right="@dimen/button_right"
-                android:top="@dimen/button_top"
-                android:bottom="@dimen/button_bottom"/>
         </shape>
     </item>
 </selector>

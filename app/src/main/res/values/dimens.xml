@@ -5,4 +5,5 @@
     <dimen name="button_top">10dp</dimen>
     <dimen name="button_bottom">10dp</dimen>
     <dimen name="large_top_separator">40dp</dimen>
+    <dimen name="top_separator">24dp</dimen>
 </resources>

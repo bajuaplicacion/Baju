@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4BA100</color>
-    <color name="colorPrimaryDark">#347000</color>
+<!--<color name="colorPrimary">#55B600</color>    -->
+    <color name="colorPrimary">#B3CF3A</color>
+    <color name="colorPrimaryDark">#A4BD35</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="textColorPrimary">#ffffff</color>
-    <color name="navigatonBarColor">#347000</color>
+    <color name="navigatonBarColor">@color/colorPrimaryDark</color>
     <color name="windowBackground">#027ADA</color>
     <color name="textButton">#027ADA</color>
+    <color name="blueIconColor">#027ADA</color>
     <color name="backgroundButton">#ffffff</color>
     <color name="white">#ffffff</color>
     <color name="button_pressed">#C8C8C8</color>
