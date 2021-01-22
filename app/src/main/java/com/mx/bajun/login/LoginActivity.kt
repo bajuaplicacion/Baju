@@ -13,10 +13,7 @@ import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
 import com.mx.bajun.homescreen.HomeScreenActivity
@@ -26,8 +23,8 @@ import com.mx.bajun.utils.Constants.USER_EMAIL_TAG
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
 
+    //Firebase Authenticator object for Password-base account
     private lateinit var auth : FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -38,11 +35,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     override fun onStart() {
         super.onStart()
+        //Google account
         val account : GoogleSignInAccount?  = GoogleSignIn.getLastSignedInAccount(this)
-        //val currentUser = this.auth.currentUser
-        /*if (currentUser != null) {
-            goToHomeScreen(currentUser.displayName, currentUser.email)
-        } else*/
         if (account != null) {
             goToHomeScreen(account.displayName, account.email)
         } else {
@@ -80,7 +74,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         val signInButton : SignInButton = findViewById(R.id.sign_in_button)
         signInButton.setSize(SignInButton.SIZE_WIDE)
         signInButton.setOnClickListener(this)
-        this.auth = Firebase.auth
     }
 
     private fun handleSignInResult(task: Task<GoogleSignInAccount>) {
