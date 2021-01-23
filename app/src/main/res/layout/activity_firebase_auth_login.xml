@@ -8,8 +8,30 @@
     tools:context=".login.FirebaseAuthLoginActivity">
 
     <include
-        android:id="@+id/i_logo"
+        android:id="@+id/i_logo_fb_auth_login"
         layout="@layout/sign_in_logo"/>
 
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_top_separator"
+        android:layout_marginStart="@dimen/top_separator"
+        android:text="@string/login_correo"
+        style="@style/NormalTextStyle"
+        app:layout_constraintTop_toBottomOf="@+id/i_logo_fb_auth_login"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_correo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_top_separator"
+        android:layout_marginStart="@dimen/min_separator"
+        android:hint="Ingresa tu correo"
+        style="@style/EditTextNormal"
+        app:layout_constraintStart_toEndOf="@+id/tv_email"
+        app:layout_constraintTop_toBottomOf="@+id/i_logo_fb_auth_login"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

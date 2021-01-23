@@ -8,4 +8,5 @@
     <string name="menu_configuracion">Configuracion</string>
     <string name="logo_content_description">Banju, tu sistema ideal para tu negocio</string>
     <string name="btn_ingresaConCorreoTxt">Ingresa con correo</string>
+    <string name="login_correo">Correo:</string>
 </resources>
