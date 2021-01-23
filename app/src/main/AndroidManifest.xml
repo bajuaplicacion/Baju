@@ -9,17 +9,22 @@
         android:roundIcon="@drawable/ic_baju_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".homescreen.HomeScreenActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".login.LoginActivity"
+        <activity android:name=".login.FirebaseAuthLoginActivity"></activity>
+        <activity
+            android:name=".homescreen.HomeScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.LoginHomeScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".base.BaseActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".base.BaseActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
