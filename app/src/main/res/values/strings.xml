@@ -8,5 +8,10 @@
     <string name="menu_configuracion">Configuracion</string>
     <string name="logo_content_description">Banju, tu sistema ideal para tu negocio</string>
     <string name="btn_ingresaConCorreoTxt">Ingresa con correo</string>
-    <string name="login_correo">Correo:</string>
+    <string name="fbAuth_correo">Correo:</string>
+    <string name="fbAuth_ingresa_tu_correo">Ingresa tu correo</string>
+    <string name="fbAuth_password">Contraseña:</string>
+    <string name="fbAuth_contrasena">Contraseña</string>
+    <string name="fbAuth_ingresar">Ingresar</string>
+    <string name="fbAuth_crear_cuenta"><u>Crear cuenta</u></string>
 </resources>

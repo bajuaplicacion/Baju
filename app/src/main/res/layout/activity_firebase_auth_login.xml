@@ -12,26 +12,88 @@
         layout="@layout/sign_in_logo"/>
 
     <TextView
-        android:id="@+id/tv_email"
+        android:id="@+id/tv_errorMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_top_separator"
-        android:layout_marginStart="@dimen/top_separator"
-        android:text="@string/login_correo"
-        style="@style/NormalTextStyle"
-        app:layout_constraintTop_toBottomOf="@+id/i_logo_fb_auth_login"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <EditText
-        android:id="@+id/et_correo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_top_separator"
-        android:layout_marginStart="@dimen/min_separator"
-        android:hint="Ingresa tu correo"
-        style="@style/EditTextNormal"
-        app:layout_constraintStart_toEndOf="@+id/tv_email"
-        app:layout_constraintTop_toBottomOf="@+id/i_logo_fb_auth_login"
+        android:layout_marginTop="20dp"
+        android:text="Error message"
+        tools:text="Error message"
+        style="@style/ErrorTextStyle"
+        app:layout_constraintTop_toBottomOf="@id/i_logo_fb_auth_login"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/ll_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/medium_separator"
+        android:layout_marginStart="@dimen/top_separator"
+        android:layout_marginEnd="@dimen/top_separator"
+        app:layout_constraintTop_toBottomOf="@id/tv_errorMessage">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fbAuth_correo"
+            style="@style/NormalTextStyle"/>
+
+        <EditText
+            android:id="@+id/et_correo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_separator"
+            android:hint="@string/fbAuth_ingresa_tu_correo"
+            style="@style/EditTextNormal"
+            android:inputType="textEmailAddress"
+            tools:ignore="Autofill" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_separator"
+        android:layout_marginStart="@dimen/top_separator"
+        android:layout_marginEnd="@dimen/top_separator"
+        app:layout_constraintTop_toBottomOf="@id/ll_email"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fbAuth_password"
+            style="@style/NormalTextStyle"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_separator"
+            android:hint="@string/fbAuth_contrasena"
+            android:inputType="textPassword"
+            style="@style/EditTextNormal"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_ingresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_separator"
+        android:text="@string/fbAuth_ingresar"
+        style="@style/ButtonStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_password"/>
+
+    <TextView
+        android:id="@+id/tv_crearCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_separator"
+        style="@style/NormalTextStyle"
+        android:text="@string/fbAuth_crear_cuenta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_ingresar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

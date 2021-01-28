@@ -38,9 +38,13 @@ class LoginHomeScreenActivity : BaseActivity(), View.OnClickListener {
         super.onStart()
         //Google account
         val account : GoogleSignInAccount?  = GoogleSignIn.getLastSignedInAccount(this)
+        val auth : FirebaseAuth = Firebase.auth
+        val currentUser = auth.currentUser
         if (account != null) {
             goToHomeScreen(account.displayName, account.email)
-        }  else {
+        }  else if (currentUser != null) {
+            goToHomeScreen(currentUser.displayName, currentUser.email)
+        } else {
             //TODO Not login
         }
     }

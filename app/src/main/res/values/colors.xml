@@ -13,4 +13,5 @@
     <color name="white">#ffffff</color>
     <color name="hint_gray">#979797</color>
     <color name="button_pressed">#C8C8C8</color>
+    <color name="red">#CA1919</color>
 </resources>
