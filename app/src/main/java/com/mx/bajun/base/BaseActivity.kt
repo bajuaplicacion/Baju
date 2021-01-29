@@ -72,7 +72,12 @@ open class BaseActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main_menu, menu)
     }
 
-    public fun showBackNavigationButton(show : Boolean) {
+    public fun setUpToolbar(bShowBackNavigationButton : Boolean, bShowMenu : Boolean) {
+        showBackNavigationButton(bShowBackNavigationButton)
+        showMenu(bShowMenu)
+    }
+
+    private fun showBackNavigationButton(show : Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(show)
         supportActionBar?.setDisplayShowHomeEnabled(show)
     }
@@ -87,7 +92,7 @@ open class BaseActivity : AppCompatActivity() {
         toolbar.subtitle = subtTitle
     }
 
-    public fun showMenu(show : Boolean) {
+    private fun showMenu(show : Boolean) {
         val toolbar : Toolbar = findViewById(R.id.base_toolbar)
         if (show) {
             inflateMenu(toolbar.menu)

@@ -2,16 +2,20 @@
     <string name="app_name">Banju</string>
     <string name="action_settings">Settings</string>
 
-    //Menu
+    //Log in menu
     <string name="menu_diccionario">Diccionario</string>
     <string name="menu_redesSociales">Redes Sociales</string>
     <string name="menu_configuracion">Configuracion</string>
     <string name="logo_content_description">Banju, tu sistema ideal para tu negocio</string>
     <string name="btn_ingresaConCorreoTxt">Ingresa con correo</string>
+    //Firebase Auth log in
     <string name="fbAuth_correo">Correo:</string>
     <string name="fbAuth_ingresa_tu_correo">Ingresa tu correo</string>
     <string name="fbAuth_password">Contraseña:</string>
     <string name="fbAuth_contrasena">Contraseña</string>
     <string name="fbAuth_ingresar">Ingresar</string>
     <string name="fbAuth_crear_cuenta"><u>Crear cuenta</u></string>
+
+    //Error
+    <string name="email_format_error">El correo no es correcto</string>
 </resources>
