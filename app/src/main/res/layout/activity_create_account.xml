@@ -18,4 +18,104 @@
             layout="@layout/sign_in_logo"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_creaTuCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_separator"
+        android:text="@string/cc_crea_tu_cuenta"
+        style="@style/NormalTextStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_logo_fb_auth_createAccount" />
+
+    <LinearLayout
+        android:id="@+id/ll_cc_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_separator"
+        android:layout_marginStart="@dimen/top_separator"
+        android:layout_marginEnd="@dimen/top_separator"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_creaTuCuenta">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cc_nombre"
+            style="@style/NormalTextStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_cc_apellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_separator"
+        android:layout_marginStart="@dimen/top_separator"
+        android:layout_marginEnd="@dimen/top_separator"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_cc_nombre">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cc_apellido"
+            style="@style/NormalTextStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_cc_correo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_separator"
+        android:layout_marginStart="@dimen/top_separator"
+        android:layout_marginEnd="@dimen/top_separator"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_cc_apellido">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cc_correo"
+            style="@style/NormalTextStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_cc_contrasena"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_separator"
+        android:layout_marginStart="@dimen/top_separator"
+        android:layout_marginEnd="@dimen/top_separator"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_cc_correo">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cc_contrasena"
+            style="@style/NormalTextStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_cc_verifica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_separator"
+        android:layout_marginStart="@dimen/top_separator"
+        android:layout_marginEnd="@dimen/top_separator"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_cc_contrasena">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cc_verifica"
+            style="@style/NormalTextStyle"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

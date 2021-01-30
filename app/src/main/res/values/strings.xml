@@ -3,11 +3,12 @@
     <string name="action_settings">Settings</string>
 
     //Log in menu
+    <string name="logo_content_description">Banju, tu sistema ideal para tu negocio</string>
     <string name="menu_diccionario">Diccionario</string>
     <string name="menu_redesSociales">Redes Sociales</string>
     <string name="menu_configuracion">Configuracion</string>
-    <string name="logo_content_description">Banju, tu sistema ideal para tu negocio</string>
-    <string name="btn_ingresaConCorreoTxt">Ingresa con correo</string>
+    <string name="menu_ingresaConCorreoTxt">Ingresa con correo</string>
+
     //Firebase Auth log in
     <string name="fbAuth_correo">Correo:</string>
     <string name="fbAuth_ingresa_tu_correo">Ingresa tu correo</string>
@@ -16,6 +17,14 @@
     <string name="fbAuth_ingresar">Ingresar</string>
     <string name="fbAuth_crear_cuenta"><u>Crear cuenta</u></string>
 
+    //Crea tu cuenta
+    <string name="cc_crea_tu_cuenta">Crea tu cuenta</string>
+    <string name="cc_nombre">Nombre:</string>
+    <string name="cc_apellido">Apellido:</string>
+    <string name="cc_correo">Correo:</string>
+    <string name="cc_contrasena">Contraseña:</string>
+    <string name="cc_verifica">Verifica:</string>
+
     //Error
-    <string name="email_format_error">El correo no es correcto</string>
+    <string name="error_email_format">El correo no es correcto</string>
 </resources>

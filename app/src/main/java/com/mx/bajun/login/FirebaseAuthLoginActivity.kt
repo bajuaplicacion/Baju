@@ -1,14 +1,12 @@
 package com.mx.bajun.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.util.PatternsCompat.EMAIL_ADDRESS
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
@@ -53,7 +51,7 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
         val btn_ingresar : Button = findViewById(R.id.btn_ingresar)
         val sEmail : String = et_correo.text.toString()
         if (!isValidEmail(sEmail)) {
-            errorMessage( getString(R.string.email_format_error) )
+            errorMessage( getString(R.string.error_email_format) )
         } else {
             tv_errorMessage.visibility = View.INVISIBLE
             et_correo.setBackgroundResource(R.drawable.white_background)
