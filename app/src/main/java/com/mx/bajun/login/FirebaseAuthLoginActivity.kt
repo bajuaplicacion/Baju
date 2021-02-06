@@ -57,9 +57,7 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
         if (!isValidEmail(sEmail)) {
             errorMessage( getString(R.string.error_email_format) )
         } else {
-            tvErrorMessage.visibility = View.INVISIBLE
-            etCorreo.setBackgroundResource(R.drawable.white_background)
-            btnIngresar.isEnabled = true
+            resetError()
         }
     }
 
@@ -83,6 +81,12 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
         tvErrorMessage.visibility = View.VISIBLE
         etCorreo.setBackgroundResource(R.drawable.error_background)
         btnIngresar.isEnabled = false
+    }
+
+    private fun resetError() {
+        tvErrorMessage.visibility = View.INVISIBLE
+        etCorreo.setBackgroundResource(R.drawable.white_background)
+        btnIngresar.isEnabled = true
     }
 
     private fun login() {
