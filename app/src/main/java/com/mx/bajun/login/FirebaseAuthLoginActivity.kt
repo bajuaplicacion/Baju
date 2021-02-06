@@ -11,6 +11,7 @@ import androidx.core.util.PatternsCompat.EMAIL_ADDRESS
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
 import com.mx.bajun.homescreen.HomeScreenActivity
+import com.mx.bajun.utils.Common.Companion.isValidEmail
 import com.mx.bajun.utils.Constants
 
 class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnFocusChangeListener {
@@ -62,9 +63,7 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
         }
     }
 
-    private fun isValidEmail(sEmail : String):Boolean {
-        return (!TextUtils.isEmpty(sEmail) && EMAIL_ADDRESS.matcher(sEmail).matches())
-    }
+
 
     private fun goToHomeScreen(displayName : String?, email : String?) {
         val homeScreenIntent : Intent = Intent(this, HomeScreenActivity::class.java).apply {
