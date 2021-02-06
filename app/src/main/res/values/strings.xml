@@ -24,6 +24,11 @@
     <string name="cc_correo">Correo:</string>
     <string name="cc_contrasena">Contraseña:</string>
     <string name="cc_verifica">Verifica:</string>
+    <string name="cc_ingresa_tu_nombre">Ingresa tu nombre</string>
+    <string name="cc_ingresa_tus_apellidos">Ingresa tus apellidos</string>
+    <string name="cc_ingresa_tu_correo">Ingresa tu correo</string>
+    <string name="cc_ingresa_tu_contrasena">Ingresa tu contraseña</string>
+    <string name="cc_verifica_contrasena">Ingresa de nuevo tu contraseña</string>
 
     //Error
     <string name="error_email_format">El correo no es correcto</string>
