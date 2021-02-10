@@ -1,6 +1,5 @@
 package com.mx.bajun.login
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -33,7 +32,7 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.btn_crea_cuenta -> {
-                if (isDataComplete()) {
+                if (isDataAccountComplete()) {
                     resetError(0)
                     creaCuenta()
                 } else {
@@ -118,7 +117,7 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
         }
     }
 
-    private fun isDataComplete() : Boolean {
+    private fun isDataAccountComplete() : Boolean {
         return esCorreoCorrecto && esContrasenaCorrecta
                 && !TextUtils.isEmpty(etCcNombre.text.toString())
                 && !TextUtils.isEmpty(etCcApellido.text.toString())
