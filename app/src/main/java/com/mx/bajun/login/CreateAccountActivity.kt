@@ -34,7 +34,7 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
             R.id.btn_crea_cuenta -> {
                 if (isDataAccountComplete()) {
                     resetError(0)
-                    creaCuenta()
+                    createAccount()
                 } else {
                     errorMessage("Datos incompletos", 0)
                 }
@@ -123,7 +123,7 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
                 && !TextUtils.isEmpty(etCcApellido.text.toString())
     }
 
-    private fun creaCuenta() {
+    private fun createAccount() {
 
     }
 
