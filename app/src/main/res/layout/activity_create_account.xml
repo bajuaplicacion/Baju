@@ -53,7 +53,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_creaTuCuenta"/>
 
             <LinearLayout
-                android:id="@+id/ll_cc_nombre"
+                android:id="@+id/ll_cc_correo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/large_top_separator"
@@ -63,62 +63,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_creaTuCuenta">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cc_nombre"
-                    style="@style/NormalTextStyle"/>
-
-                <EditText
-                    android:id="@+id/et_cc_nombre"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/large_top_separator"
-                    android:hint="@string/cc_ingresa_tu_nombre"
-                    android:inputType="text"
-                    style="@style/EditTextNormal"
-                    android:importantForAutofill="no"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_cc_apellido"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_separator"
-                android:layout_marginStart="@dimen/top_separator"
-                android:layout_marginEnd="@dimen/top_separator"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_cc_nombre">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cc_apellido"
-                    style="@style/NormalTextStyle"/>
-
-                <EditText
-                    android:id="@+id/et_cc_apellido"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="39dp"
-                    android:hint="@string/cc_ingresa_tus_apellidos"
-                    android:inputType="text"
-                    android:importantForAutofill="no"
-                    style="@style/EditTextNormal"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_cc_correo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_separator"
-                android:layout_marginStart="@dimen/top_separator"
-                android:layout_marginEnd="@dimen/top_separator"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_cc_apellido">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -192,6 +136,62 @@
                     style="@style/EditTextNormal"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_cc_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_separator"
+                android:layout_marginStart="@dimen/top_separator"
+                android:layout_marginEnd="@dimen/top_separator"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_cc_verifica">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cc_nombre"
+                    style="@style/NormalTextStyle"/>
+
+                <EditText
+                    android:id="@+id/et_cc_nombre"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/large_top_separator"
+                    android:hint="@string/cc_ingresa_tu_nombre"
+                    android:inputType="text"
+                    style="@style/EditTextNormal"
+                    android:importantForAutofill="no"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_cc_apellido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_separator"
+                android:layout_marginStart="@dimen/top_separator"
+                android:layout_marginEnd="@dimen/top_separator"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_cc_nombre">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cc_apellido"
+                    style="@style/NormalTextStyle"/>
+
+                <EditText
+                    android:id="@+id/et_cc_apellido"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="39dp"
+                    android:hint="@string/cc_ingresa_tus_apellidos"
+                    android:inputType="text"
+                    android:importantForAutofill="no"
+                    style="@style/EditTextNormal"/>
+            </LinearLayout>
+
             <Button
                 android:id="@+id/btn_crea_cuenta"
                 android:layout_width="wrap_content"
@@ -203,7 +203,8 @@
                 android:text="@string/cc_crea_tu_cuenta"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_cc_verifica"/>
+                app:layout_constraintTop_toBottomOf="@id/ll_cc_apellido"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
