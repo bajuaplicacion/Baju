@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -19,10 +18,13 @@ import com.google.firebase.ktx.Firebase
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
 import com.mx.bajun.homescreen.HomeScreenActivity
+import com.mx.bajun.utils.BajunSharedPreferences
 import com.mx.bajun.utils.Constants.EMAIL_LOGIN_RESULT_ID
 import com.mx.bajun.utils.Constants.GOOGLE_LOGIN_REQ_ID
-import com.mx.bajun.utils.Constants.USER_DISPLAY_NAME_TAG
-import com.mx.bajun.utils.Constants.USER_EMAIL_TAG
+import com.mx.bajun.utils.Constants.GOOGLE_SIGN_IN_TYPE
+import com.mx.bajun.utils.Constants.SIGN_IN_TYPE_KEY
+import com.mx.bajun.utils.Constants.USER_DISPLAY_NAME_KEY
+import com.mx.bajun.utils.Constants.USER_EMAIL_KEY
 
 class LoginHomeScreenActivity : BaseActivity(), View.OnClickListener {
 
@@ -96,6 +98,7 @@ class LoginHomeScreenActivity : BaseActivity(), View.OnClickListener {
     private fun handleSignInResult(task: Task<GoogleSignInAccount>) {
         try {
             val account : GoogleSignInAccount = task.getResult(ApiException::class.java)
+            BajunSharedPreferences.instance.setString(this, SIGN_IN_TYPE_KEY, GOOGLE_SIGN_IN_TYPE)
             goToHomeScreen(account.displayName, account.email)
         } catch (e : ApiException) {
             Log.w(ActivityConstants.TAG, "signInResult:failed code= " + e.status)
@@ -104,8 +107,8 @@ class LoginHomeScreenActivity : BaseActivity(), View.OnClickListener {
 
     private fun goToHomeScreen(displayName : String?, email : String?) {
         val homeScreenIntent : Intent = Intent(this, HomeScreenActivity::class.java).apply {
-            putExtra(USER_DISPLAY_NAME_TAG, displayName)
-            putExtra(USER_EMAIL_TAG, email)
+            putExtra(USER_DISPLAY_NAME_KEY, displayName)
+            putExtra(USER_EMAIL_KEY, email)
         }
         startActivity(homeScreenIntent)
     }

@@ -9,9 +9,10 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.mx.bajun.R
+import com.mx.bajun.utils.BajunSharedPreferences
+import com.mx.bajun.utils.Constants
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -117,11 +118,30 @@ open class BaseActivity : AppCompatActivity() {
         onBackPressed()
     }
 
-    public fun googleSignOut() {
+    private fun googleSignOut() {
         val gso : GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
         val mGoogleSignInClient : GoogleSignInClient = GoogleSignIn.getClient(this, gso)
         mGoogleSignInClient.signOut().addOnCompleteListener {
             finish()
+        }
+    }
+
+    private fun emailSignOut() {
+        FirebaseAuth.getInstance().signOut()
+        finish()
+    }
+
+    public fun signOut(viewId: Int?) {
+        when (viewId) {
+            R.id.btnSignOut ->  {
+                val signInType : String = BajunSharedPreferences.instance.getString(this,
+                    Constants.SIGN_IN_TYPE_KEY
+                )
+                when (signInType) {
+                    Constants.GOOGLE_SIGN_IN_TYPE -> googleSignOut()
+                    Constants.EMAIL_SIGN_IN_TYPE -> emailSignOut()
+                }
+            }
         }
     }
 }

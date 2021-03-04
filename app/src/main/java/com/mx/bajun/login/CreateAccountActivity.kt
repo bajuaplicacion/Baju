@@ -1,6 +1,5 @@
 package com.mx.bajun.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -8,21 +7,17 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.ktx.Firebase
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
+import com.mx.bajun.utils.BajunSharedPreferences
 import com.mx.bajun.utils.Common.Companion.isValidEmail
-import com.mx.bajun.utils.Constants.FAILURE_ID
-import com.mx.bajun.utils.Constants.STRING_VACIO
+import com.mx.bajun.utils.Constants.EMAIL_SIGN_IN_TYPE
+import com.mx.bajun.utils.Constants.EMPTY_STRING
+import com.mx.bajun.utils.Constants.SIGN_IN_TYPE_KEY
 import com.mx.bajun.utils.Constants.SUCCESS_ID
-import kotlinx.android.synthetic.main.activity_homescreen.*
 
 class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocusChangeListener {
 
@@ -121,7 +116,7 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
     }
 
     private fun resetError(id: Int) {
-        tvCcMensajeDeError.text = STRING_VACIO
+        tvCcMensajeDeError.text = EMPTY_STRING
         tvCcMensajeDeError.visibility = View.INVISIBLE
         when (id) {
             R.id.et_cc_correo -> {
@@ -177,6 +172,7 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
             ?.addOnCompleteListener(OnCompleteListener { task: Task<Void> ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "updateDisplayName: successful")
+                    BajunSharedPreferences.instance.setString(this, SIGN_IN_TYPE_KEY, EMAIL_SIGN_IN_TYPE)
                     setResult(SUCCESS_ID)
                     finish()
                 } else {

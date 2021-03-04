@@ -2,13 +2,11 @@ package com.mx.bajun.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.core.util.PatternsCompat.EMAIL_ADDRESS
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
 import com.mx.bajun.homescreen.HomeScreenActivity
@@ -81,8 +79,8 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
 
     private fun goToHomeScreen(displayName : String?, email : String?) {
         val homeScreenIntent : Intent = Intent(this, HomeScreenActivity::class.java).apply {
-            putExtra(Constants.USER_DISPLAY_NAME_TAG, displayName)
-            putExtra(Constants.USER_EMAIL_TAG, email)
+            putExtra(Constants.USER_DISPLAY_NAME_KEY, displayName)
+            putExtra(Constants.USER_EMAIL_KEY, email)
         }
         startActivity(homeScreenIntent)
     }
