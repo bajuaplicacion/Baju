@@ -7,6 +7,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
 import com.mx.bajun.homescreen.HomeScreenActivity
@@ -19,6 +23,7 @@ import com.mx.bajun.utils.Constants.SUCCESS_ID
 class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnFocusChangeListener {
 
     private lateinit var etCorreo : EditText
+    private lateinit var etPassword : EditText
     private lateinit var btnIngresar : Button
     private lateinit var tvCrearCuenta : TextView
     private lateinit var tvErrorMessage : TextView
@@ -49,7 +54,7 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
                 Log.d(TAG, "onActivityResult - create account")
                 when (resultCode) {
                     SUCCESS_ID -> setResult(SUCCESS_ID)
-                    FAILURE_ID -> setResult(FAILURE_ID)
+                    //FAILURE_ID -> setResult(FAILURE_ID)
                 }
                 finish()
             }
@@ -59,6 +64,7 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
     private fun init() {
         setUpToolbar(true, false)
         etCorreo = findViewById(R.id.et_correo)
+        etPassword = findViewById(R.id.et_password)
         btnIngresar  = findViewById(R.id.btn_ingresar)
         tvCrearCuenta = findViewById(R.id.tv_crearCuenta)
         tvErrorMessage = findViewById(R.id.tv_errorMessage)
@@ -71,9 +77,9 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
     private fun checkEmailFormat() {
         val sEmail : String = etCorreo.text.toString()
         if (!isValidEmail(sEmail)) {
-            errorMessage( getString(R.string.error_email_format) )
+            errorMessage(R.id.et_correo, getString(R.string.error_email_format) )
         } else {
-            resetError()
+            resetError(R.id.et_correo)
         }
     }
 
@@ -90,20 +96,44 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
         startActivityForResult(crearCuentaIntent, CREATE_ACCOUNT_RESULT_ID)
     }
 
-    private fun errorMessage(message : String) {
+    private fun errorMessage(viewId:Int, message : String) {
         tvErrorMessage.text = message
         tvErrorMessage.visibility = View.VISIBLE
-        etCorreo.setBackgroundResource(R.drawable.error_background)
-        btnIngresar.isEnabled = false
+        if (viewId == R.id.et_correo) {
+            etCorreo.setBackgroundResource(R.drawable.error_background)
+            btnIngresar.isEnabled = false
+        } else {
+            etPassword.setBackgroundResource(R.drawable.error_background)
+        }
     }
 
-    private fun resetError() {
+    private fun resetError(viewId: Int) {
         tvErrorMessage.visibility = View.INVISIBLE
-        etCorreo.setBackgroundResource(R.drawable.white_background)
-        btnIngresar.isEnabled = true
+        if (viewId == R.id.et_correo) {
+            etCorreo.setBackgroundResource(R.drawable.white_background)
+            btnIngresar.isEnabled = true
+        } else {
+            etPassword.setBackgroundResource(R.drawable.white_background)
+        }
     }
 
     private fun login() {
+        val email : String = etCorreo.text.toString()
+        val password : String = etPassword.text.toString()
+        val auth : FirebaseAuth = FirebaseAuth.getInstance()
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task : Task<AuthResult> ->
+                if (task.isSuccessful) {
+                    resetError(R.id.et_password)
+                    setResult(SUCCESS_ID)
+                    finish()
+                } else {
+                    Log.d(TAG, "login: " + task.exception.toString())
+                    when (task.exception) {
+                        is FirebaseAuthInvalidCredentialsException -> errorMessage(R.id.et_password, getString(R.string.error_contrasenia_incorrecta))
+                    }
+                }
+            }
 
     }
 

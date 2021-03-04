@@ -150,11 +150,11 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
                 } else {
                     when (task.exception) {
                         is FirebaseAuthWeakPasswordException -> {
-                            errorMessage("Contraseña debil", R.id.et_cc_verifica)
+                            errorMessage(getString(R.string.error_contrasenia_debil), R.id.et_cc_verifica)
                             Log.d(TAG, "createAccount - FirebaseAuthWeakPasswordException")
                         }
                         is FirebaseAuthUserCollisionException -> {
-                            errorMessage("Correo ya existente", R.id.et_cc_correo)
+                            errorMessage(getString(R.string.error_correo_existente), R.id.et_cc_correo)
                             Log.d(TAG, "createAccount - FirebaseAuthUserCollisionException")
                         }
                         is FirebaseAuthInvalidCredentialsException -> {

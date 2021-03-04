@@ -32,4 +32,7 @@
 
     //Error
     <string name="error_email_format">El correo no es correcto</string>
+    <string name="error_contrasenia_debil">Contraseña debil</string>
+    <string name="error_correo_existente">Correo ya existente</string>
+    <string name="error_contrasenia_incorrecta">Contraseña incorrecta</string>
 </resources>
