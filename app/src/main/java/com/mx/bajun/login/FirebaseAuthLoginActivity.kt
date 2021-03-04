@@ -3,6 +3,7 @@ package com.mx.bajun.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -13,6 +14,9 @@ import com.mx.bajun.base.BaseActivity
 import com.mx.bajun.homescreen.HomeScreenActivity
 import com.mx.bajun.utils.Common.Companion.isValidEmail
 import com.mx.bajun.utils.Constants
+import com.mx.bajun.utils.Constants.CREATE_ACCOUNT_RESULT_ID
+import com.mx.bajun.utils.Constants.FAILURE_ID
+import com.mx.bajun.utils.Constants.SUCCESS_ID
 
 class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnFocusChangeListener {
 
@@ -40,6 +44,20 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            CREATE_ACCOUNT_RESULT_ID -> {
+                Log.d(TAG, "onActivityResult - create account")
+                when (resultCode) {
+                    SUCCESS_ID -> setResult(SUCCESS_ID)
+                    FAILURE_ID -> setResult(FAILURE_ID)
+                }
+                finish()
+            }
+        }
+    }
+
     private fun init() {
         setUpToolbar(true, false)
         etCorreo = findViewById(R.id.et_correo)
@@ -61,8 +79,6 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
         }
     }
 
-
-
     private fun goToHomeScreen(displayName : String?, email : String?) {
         val homeScreenIntent : Intent = Intent(this, HomeScreenActivity::class.java).apply {
             putExtra(Constants.USER_DISPLAY_NAME_TAG, displayName)
@@ -73,7 +89,7 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
 
     private fun goToCreaCuenta() {
         val crearCuentaIntent : Intent = Intent(this, CreateAccountActivity::class.java)
-        startActivity(crearCuentaIntent)
+        startActivityForResult(crearCuentaIntent, CREATE_ACCOUNT_RESULT_ID)
     }
 
     private fun errorMessage(message : String) {
@@ -91,5 +107,9 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
 
     private fun login() {
 
+    }
+
+    companion object {
+        const val TAG : String = "FBALoginActivity"
     }
 }

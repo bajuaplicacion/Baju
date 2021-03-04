@@ -1,15 +1,28 @@
 package com.mx.bajun.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.*
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.ktx.Firebase
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
 import com.mx.bajun.utils.Common.Companion.isValidEmail
+import com.mx.bajun.utils.Constants.FAILURE_ID
 import com.mx.bajun.utils.Constants.STRING_VACIO
+import com.mx.bajun.utils.Constants.SUCCESS_ID
+import kotlinx.android.synthetic.main.activity_homescreen.*
 
 class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocusChangeListener {
 
@@ -20,6 +33,7 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
     private lateinit var etCcContrasena : EditText
     private lateinit var etCcVerifica : EditText
     private lateinit var btnCreaCuenta : Button
+    private lateinit var auth: FirebaseAuth
     private var esCorreoCorrecto : Boolean = false
     private var esContrasenaCorrecta : Boolean = false
 
@@ -33,8 +47,12 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
         when (p0?.id) {
             R.id.btn_crea_cuenta -> {
                 if (isDataAccountComplete()) {
+                    val firstName : String = etCcNombre.text.toString()
+                    val lastName : String = etCcApellido.text.toString()
+                    val email : String = etCcCorreo.text.toString()
+                    val password : String = etCcContrasena.text.toString()
                     resetError(0)
-                    createAccount()
+                    createAccount(email, password, firstName, lastName)
                 } else {
                     errorMessage("Datos incompletos", 0)
                 }
@@ -73,6 +91,7 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
     }
 
     private fun init() {
+        auth = FirebaseAuth.getInstance()
         tvCcMensajeDeError = findViewById(R.id.tv_ccMensajeDeError)
         etCcNombre = findViewById(R.id.et_cc_nombre)
         etCcApellido = findViewById(R.id.et_cc_apellido)
@@ -123,8 +142,51 @@ class CreateAccountActivity : BaseActivity(), View.OnClickListener, View.OnFocus
                 && !TextUtils.isEmpty(etCcApellido.text.toString())
     }
 
-    private fun createAccount() {
+    private fun createAccount(email:String, password : String, firstName : String, lastName : String) {
+        val sb : StringBuffer = StringBuffer()
+        sb.append(firstName)
+        sb.append(" ")
+        sb.append(lastName)
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this, OnCompleteListener { task: Task<AuthResult> ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "createAccount - Success")
+                    updateDisplayName(sb.toString())
+                } else {
+                    when (task.exception) {
+                        is FirebaseAuthWeakPasswordException -> {
+                            errorMessage("Contraseña debil", R.id.et_cc_verifica)
+                            Log.d(TAG, "createAccount - FirebaseAuthWeakPasswordException")
+                        }
+                        is FirebaseAuthUserCollisionException -> {
+                            errorMessage("Correo ya existente", R.id.et_cc_correo)
+                            Log.d(TAG, "createAccount - FirebaseAuthUserCollisionException")
+                        }
+                        is FirebaseAuthInvalidCredentialsException -> {
+                            Log.d(TAG, "createAccount - FirebaseAuthInvalidCredentialsException")
+                        }
+                    }
+                }
+            })
+    }
 
+    private fun updateDisplayName(displayName : String) {
+        val user = auth.currentUser
+        val profileUpdate : UserProfileChangeRequest = UserProfileChangeRequest.Builder().setDisplayName(displayName).build()
+        user?.updateProfile(profileUpdate)
+            ?.addOnCompleteListener(OnCompleteListener { task: Task<Void> ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "updateDisplayName: successful")
+                    setResult(SUCCESS_ID)
+                    finish()
+                } else {
+                    Log.d(TAG, "updateDisplayName: failuer")
+                }
+            })
+    }
+
+    companion object {
+        const val TAG : String = "CreateAccountActivity"
     }
 
 }

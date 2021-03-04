@@ -19,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
 import com.mx.bajun.homescreen.HomeScreenActivity
+import com.mx.bajun.utils.Constants.EMAIL_LOGIN_RESULT_ID
 import com.mx.bajun.utils.Constants.GOOGLE_LOGIN_REQ_ID
 import com.mx.bajun.utils.Constants.USER_DISPLAY_NAME_TAG
 import com.mx.bajun.utils.Constants.USER_EMAIL_TAG
@@ -50,12 +51,17 @@ class LoginHomeScreenActivity : BaseActivity(), View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == GOOGLE_LOGIN_REQ_ID) {
-            try {
-               val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-                handleSignInResult(task)
-            } catch (e : ApiException) {
-                Log.w(ActivityConstants.TAG, "Google sign in failed", e)
+        when (requestCode) {
+            GOOGLE_LOGIN_REQ_ID -> {
+                try {
+                    val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+                    handleSignInResult(task)
+                } catch (e : ApiException) {
+                    Log.d(TAG, "Google sign in failed")
+                }
+            }
+            EMAIL_LOGIN_RESULT_ID -> {
+                Log.d(TAG, "Email login")
             }
         }
     }
@@ -106,10 +112,10 @@ class LoginHomeScreenActivity : BaseActivity(), View.OnClickListener {
 
     private fun goToFirebaseAuthLogin() {
         val firebaseAuthLoginIntent : Intent = Intent(this, FirebaseAuthLoginActivity::class.java)
-        startActivity(firebaseAuthLoginIntent)
+        startActivityForResult(firebaseAuthLoginIntent, EMAIL_LOGIN_RESULT_ID)
     }
 
-    private object ActivityConstants {
+    companion object ActivityConstants {
         const val TAG : String = "LoginActivity"
     }
 }
