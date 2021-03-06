@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Banju</string>
+    <string name="app_name">Bajun</string>
     <string name="action_settings">Settings</string>
 
     //Log in menu
-    <string name="logo_content_description">Banju, tu sistema ideal para tu negocio</string>
+    <string name="logo_content_description">Bajun, tu sistema ideal para tu negocio</string>
     <string name="menu_diccionario">Diccionario</string>
     <string name="menu_redesSociales">Redes Sociales</string>
     <string name="menu_configuracion">Configuracion</string>

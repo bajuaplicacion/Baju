@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.mx.bajun.R
 import com.mx.bajun.base.BaseActivity
 import com.mx.bajun.homescreen.HomeScreenActivity
+import com.mx.bajun.utils.BajunSharedPreferences
 import com.mx.bajun.utils.Common.Companion.isValidEmail
 import com.mx.bajun.utils.Constants
 import com.mx.bajun.utils.Constants.CREATE_ACCOUNT_RESULT_ID
@@ -124,6 +125,10 @@ class FirebaseAuthLoginActivity : BaseActivity(), View.OnClickListener, View.OnF
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task : Task<AuthResult> ->
                 if (task.isSuccessful) {
+                    BajunSharedPreferences.instance.setString(this,
+                        Constants.SIGN_IN_TYPE_KEY,
+                        Constants.EMAIL_SIGN_IN_TYPE
+                    )
                     resetError(R.id.et_password)
                     setResult(SUCCESS_ID)
                     finish()
